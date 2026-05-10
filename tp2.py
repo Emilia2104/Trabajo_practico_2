@@ -73,4 +73,16 @@ def trabajo_ascii(imagen, ancho):
     
     return resultado
 
+def guardar_ascii_art(ascii_art: str, ruta_salida: str):
+    with open(ruta_salida, 'w') as f:
+        f.write(ascii_art)
+
+
+def ascii (imagen,ruta_salida):
+    entrada = input('Ingrese ancho de imagen (default=100): ')
+    ancho = 100 if entrada == '' else int(entrada)
+    resultado= trabajo_ascii (imagen,ancho)
+    guardar_ascii_art(resultado,ruta_salida)
+
+
 
