@@ -7,7 +7,11 @@ def pixel(imagen, tamaño, niveles):
     array_imagen = np.array (imagen)
     alto= array_imagen.shape[0]
     ancho= array_imagen.shape[1]
+    #tenemos que hacer una variable con los valores posibles por nivel, que empieza en 0 y dividimos 255 (que es el maximo del canal) por la cantidad de niveles - 1 y lo sumamos al ultimo numero
 
+    # Recorremos la imagen bloque por bloque saltando de a tamaño de bloque que nos da el input 
+    # En cada iteración, i y j son la esquina superior izquierda del bloque actual
+    # Hacemos una variable bloque , calculamos su color promedio y lo reemplazamos por el color más cercano de la paleta
 
 
 
