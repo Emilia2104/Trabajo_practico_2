@@ -18,6 +18,8 @@ def solicitud()-> str:
 
 imagen = "foto.jpg"
 # Cargar la imagen y convertirla a un array de NumPy
+
+
 array_imagen = np.array(Image.open(imagen))
 
 
