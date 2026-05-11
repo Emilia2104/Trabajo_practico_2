@@ -133,10 +133,12 @@ def main():
     while not flag:
         if entrada.lower() == "pixel":
             flag = True
-            pixel(imagen)
+            resultado = pixel(imagen)
+            resultado.show()
         elif entrada.lower() == "ascii":
             flag = True
-            ascii(imagen)
+            resultado = ascii(imagen)
+            resultado.show()
         else:
             entrada = input ('Metodo invalido, ingrese pixel o ASCII')
 
