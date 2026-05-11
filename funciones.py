@@ -93,7 +93,18 @@ def guardar_ascii_art(ascii_art: str, ruta_salida: str):
 
 def ascii (imagen):
     entrada = input('Ingrese ancho de imagen (default=100): ')
-    ancho = 100 if entrada == '' else int(entrada)
+
+     if entrada == '' or entrada == ' ':
+        ancho = 100
+    else:
+        while not entrada isdigit():
+            entrada= input ('Reingrese el tamaño:')
+                            
+        ancho = int(entrada)
+        while ancho <= 0:
+            entrada = input('Ancho de la imagen ASCII debe ser un numero positivo, reingrese: ')
+            ancho = int(entrada)
+            
     ruta_salida= input ("Seleccione la ruta para guardar el resultado: ")
     resultado= trabajo_ascii (imagen,ancho)
     guardar_ascii_art(resultado,ruta_salida)
@@ -110,7 +121,7 @@ def solicitud()-> str:
     """
     ruta= input('Ingrese ruta donde esta la imagen a procesar:')
     while not os.path.exists(ruta):
-        ruta= input('Ruta no valida, reingrese ruta')
+        ruta= input('No se encontro la imagen. Por favor, verifique la ruta e intente nuevamente: ')
     return ruta
 
 
