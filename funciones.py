@@ -19,7 +19,7 @@ def pixel_art (imagen, niveles, tam_bloque):
     for i in range (0,alto,tam_bloque):
         for j in range (0,ancho,tam_bloque):
             bloque = array_imagen [i:i+tam_bloque, j:j+tam_bloque]
-            promedio = np.mean(bloque,axis=(0,1)).astype(np.uint8)
+            promedio = np.mean(bloque,axis=(0,1))
             mas_cercano= [min(valores_posibles, key=lambda x: abs(x-canal)) for canal in promedio]
             bloque [:]= mas_cercano
     imagen_modificada= Image.fromarray(array_imagen)
