@@ -91,9 +91,10 @@ def guardar_ascii_art(ascii_art: str, ruta_salida: str):
         f.write(ascii_art)
 
 
-def ascii (imagen,ruta_salida):
+def ascii (imagen):
     entrada = input('Ingrese ancho de imagen (default=100): ')
     ancho = 100 if entrada == '' else int(entrada)
+    ruta_salida= input ("Seleccione la ruta para guardar el resultado: ")
     resultado= trabajo_ascii (imagen,ancho)
     guardar_ascii_art(resultado,ruta_salida)
 
@@ -116,6 +117,19 @@ def solicitud()-> str:
 def main(): 
     ruta = solicitud()
     entrada = input ('Seleccione metodo (pixel/ascii):')
+    imagen= Image.open(ruta)
+    flag= True
+    while flag
+        if entrada.lower() == "pixel":
+            pixel= pixel(imagen)
+        elif entrada.lower() == "ascii":
+            ascii= ascii(imagen)
+        else:
+            flag= not flag 
+        main()
+        
+        
+        
         
     
 
