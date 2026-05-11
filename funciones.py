@@ -98,8 +98,22 @@ def ascii (imagen,ruta_salida):
     guardar_ascii_art(resultado,ruta_salida)
 
 
+def solicitud()-> str:
+    """
+    Solicita al usuario la ruta donde esta la imagen, si no es valida solicita su reingreso
+
+    Returns:
+        str: Retorna ruta valida de la imagen
+    """
+    ruta= input('Ingrese ruta donde esta la imagen a procesar:')
+    while not os.path.exists(ruta):
+        ruta= input('Ruta no valida, reingrese ruta')
+    return ruta
+
+
 def main(): 
-    ruta = input('Ingrese la ruta de la imagen a procesar: ')
+    ruta = solicitud()
+    entrada = input ('Seleccione metodo (pixel/ascii):')
     
 
 
