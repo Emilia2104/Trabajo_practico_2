@@ -24,9 +24,10 @@ def pixel_divison_en_bloques (imagen, niveles, tam_bloque):
 
 def valores_posibles (niveles):
     valores_posibles = []
-    for i in range(niveles):
+    for i in range(niveles-1):
         x = i * 255 // (niveles - 1)
-        valores_posibles.append(x)
+        proximo_valor= valores_posibles[-1] + x 
+        valores_posibles.append(proximo_valor)
     return valores_posibles
 
 def bloque_promedio (bloque, niveles, tam_bloque):
