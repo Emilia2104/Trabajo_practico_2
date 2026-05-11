@@ -47,7 +47,7 @@ def pixel(imagen):
         while not n.isdigit():
             n= input ('Reingrese el tamaño: ')
         niveles = int(n)
-        while n <= 0:
+        while niveles <= 0:
             n= input('Nivel invalido (0 o negativo),reingrese cantidad de niveles: ')
             niveles = int(n)
 
@@ -129,26 +129,18 @@ def main():
     ruta = solicitud()
     entrada = input ('Seleccione metodo (pixel/ascii):')
     imagen= Image.open(ruta)
-    flag= True
-    while flag:
+    flag= False
+    while not flag:
         if entrada.lower() == "pixel":
             pixel(imagen)
         elif entrada.lower() == "ascii":
             ascii(imagen)
         else:
             entrada = input ('Metodo invalido, ingrese pixel o ASCII')
+            flag = True
 
     main()
         
         
         
-        
-    
-
-
-
-        
-    
-
-
 
