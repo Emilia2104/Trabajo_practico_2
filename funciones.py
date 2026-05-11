@@ -132,15 +132,16 @@ def main():
     flag= False
     while not flag:
         if entrada.lower() == "pixel":
+            flag = True
             pixel(imagen)
         elif entrada.lower() == "ascii":
+            flag = True
             ascii(imagen)
         else:
             entrada = input ('Metodo invalido, ingrese pixel o ASCII')
-            flag = True
 
-    main()
-        
+main ()
+
         
         
 
