@@ -1,13 +1,53 @@
+
 import numpy as np    
 import math
 import matplotlib.pyplot as plt 
 from PIL import Image  
+
 #PIXEL:
-def pixel(imagen, tamaño, niveles):
+def pixel_divison_en_bloques (imagen, niveles, tam_bloque):
     array_imagen = np.array (imagen)
     alto= array_imagen.shape[0]
     ancho= array_imagen.shape[1]
-    #tenemos que hacer una variable con los valores posibles por nivel, que empieza en 0 y dividimos 255 (que es el maximo del canal) por la cantidad de niveles - 1 y lo sumamos al ultimo numero
+
+    alto_bloque = alto // tam_bloque
+    ancho_bloque = ancho // tam_bloque
+
+    total_bloques = alto_bloque * ancho_bloque
+
+    bloques = []
+    for i in range (0,alto,tam_bloque):
+        for j in range (0,ancho,tam_bloque):
+            bloque = array_imagen [i:i+tam_bloque, j:j+tam_bloque]
+            bloques.append (bloque)
+    return bloques
+
+def valores_posibles (niveles):
+    valores_posibles = []
+    for i in range(niveles):
+        x = i * 255 // (niveles - 1)
+        valores_posibles.append(x)
+    return valores_posibles
+
+def bloque_promedio (bloque, niveles, tam_bloque):
+    promedio = np.mean(bloque, axis=(0,1)).astype(np.uint8)
+    return promedio
+
+def color_mas_cercano (promedio, valores_posibles):
+   
+
+
+        
+
+
+
+    
+
+
+
+
+
+    #tenemos que hacer una variable con los valores posibles por nivel, que empieza en 0 y dividimos 255 (que es el maximo del canal) por la cantidad de niveles - 1 y lo sumamos al ultimo numero LISTO!!!!
 
     # Recorremos la imagen bloque por bloque saltando de a tamaño de bloque que nos da el input 
     # En cada iteración, i y j son la esquina superior izquierda del bloque actual
@@ -57,6 +97,10 @@ def ascii (imagen,ruta_salida):
     resultado= trabajo_ascii (imagen,ancho)
     guardar_ascii_art(resultado,ruta_salida)
 
+
+def main(): 
+    ruta = input('Ingrese la ruta de la imagen a procesar: ')
+    
 
 
 
