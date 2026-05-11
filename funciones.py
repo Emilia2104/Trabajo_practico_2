@@ -23,7 +23,7 @@ def pixel_divison_en_bloques (imagen, niveles, tam_bloque):
     return bloques
 
 def valores_posibles (niveles):
-    valores_posibles = []
+    valores_posibles = [0]
     for i in range(niveles-1):
         x = i * 255 // (niveles - 1)
         proximo_valor= valores_posibles[-1] + x 
