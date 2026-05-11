@@ -34,7 +34,18 @@ def bloque_promedio (bloque, niveles, tam_bloque):
     promedio = np.mean(bloque, axis=(0,1)).astype(np.uint8)
     return promedio
 
-def color_mas_cercano (promedio, valores_posibles):
+def color_mas_cercano (array_imagen,promedio, valores_posibles,bloques,alto,ancho,tam_bloque):
+    for i in range (0,alto,tam_bloque):
+        for j in range (0,ancho,tam_bloque):
+            bloque = array_imagen [i:i+tam_bloque, j:j+tam_bloque]
+            mas_cercano= [min(valores_posibles, key=lambda x: abs(x-canal) for canal in promedio)
+
+            bloque [:]= mas_cercano
+    imagen_modificada= Image.fromarray(array_imagen)
+    return imagen_modificada 
+    
+                  
+    
    
 
 
