@@ -4,16 +4,32 @@ import math
 import matplotlib.pyplot as plt 
 from PIL import Image  
 
-#PIXEL:
-def pixel_art (imagen, niveles, tam_bloque):
+#PIXEL ART:
+def pixel_art (imagen, niveles: int, tam_bloque: int)-> :
+    
+    """
+    Convierte la imagen a un array Numpy. Recorre en bloques cuadrados y 
+    remplaza cada bloque por el color de paleta mas ceercano a su promedio RGB.
+
+    ARGUMENTOS 
+    imagen: imagen de entrada 
+    niveles: cantidad de niveles de canales, determina el
+    tamaño de la paleta de colores
+    tam_bloque: longitud en pixeles de los lados de cada bloque
+
+    RETURN 
+    La funcion retonra una nueva imagen con el efecto pixel art ya aplicado
+    """
+
     array_imagen = np.array (imagen)
     alto= array_imagen.shape[0]
     ancho= array_imagen.shape[1]
 
     valores_posibles = [0]
+
     for i in range(niveles-1):
         x = 255 // (niveles - 1)
-        proximo_valor= valores_posibles[-1] + x 
+        proximo_valor = valores_posibles[-1] + x 
         valores_posibles.append(proximo_valor)
 
     for i in range (0,alto,tam_bloque):
@@ -22,12 +38,28 @@ def pixel_art (imagen, niveles, tam_bloque):
             promedio = np.mean(bloque,axis=(0,1))
             mas_cercano= [min(valores_posibles, key=lambda x: abs(x-canal)) for canal in promedio]
             bloque [:]= mas_cercano
+
     imagen_modificada= Image.fromarray(array_imagen)
+
     return imagen_modificada
 
-#pregunta pixel_art 
-def pixel(imagen):
+#PREGUNTA PARA USO DE PIXEL ART
+ 
+def pixel(imagen: )-> :
     
+    """
+    Se pregunta al usuario por tamaño de bloque y cantidad de niveles,
+    en caso de que no se le asigne valor. Sino, se valida que los
+    valores ingresados sean positivos.
+   
+    ARGUMENTO
+    imagen:
+
+    RETURN
+    La funcion retorna la imagen con el efecto pixel art, segun parametros
+    ingresados por el usuario.
+    """
+
     entrada = input('Ingrese tamaño del bloque (default=10): ')
     if entrada == '' or entrada == ' ':
         tamaño = 10
@@ -57,7 +89,20 @@ def pixel(imagen):
 
     
 #ASCII:
-def trabajo_ascii(imagen, ancho):
+def trabajo_ascii(imagen: , ancho: int)->:
+
+    """
+    Convierte la imagen a un array Numpy con escala de grises, se normalizan dentro de los 
+    valores preestablecidos para escala de grises, se redimensiona y mapea la imagen 
+    asignandole el caracter correspondiente segun el valor de intensidad. 
+
+    ARGUMENTOS
+    imagen:
+    ancho: tamano que ingresa el usuario para redimensiona la imagen
+
+    RETURN
+    La funcion retorna la imagen con el efecto ASCII ya aplicado
+    """
     paleta = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
     
     # convertir a grises
@@ -87,6 +132,10 @@ def trabajo_ascii(imagen, ancho):
     return resultado
 
 def guardar_ascii_art(ascii_art: str, ruta_salida: str):
+
+    """
+    
+    """
     with open(ruta_salida, 'w') as f:
         f.write(ascii_art)
 
@@ -144,6 +193,4 @@ def main():
 
 main ()
 
-        
-        
 
