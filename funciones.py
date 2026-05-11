@@ -38,7 +38,7 @@ def color_mas_cercano (array_imagen,promedio, valores_posibles,bloques,alto,anch
     for i in range (0,alto,tam_bloque):
         for j in range (0,ancho,tam_bloque):
             bloque = array_imagen [i:i+tam_bloque, j:j+tam_bloque]
-            mas_cercano= [min(valores_posibles, key=lambda x: abs(x-canal) for canal in promedio)
+            mas_cercano= [min(valores_posibles, key=lambda x: abs(x-canal) for canal in promedio)]
 
             bloque [:]= mas_cercano
     imagen_modificada= Image.fromarray(array_imagen)
