@@ -1,4 +1,4 @@
-
+import os
 import numpy as np    
 import math
 import matplotlib.pyplot as plt 
@@ -16,11 +16,11 @@ def pixel_art (imagen, niveles, tam_bloque):
         proximo_valor= valores_posibles[-1] + x 
         valores_posibles.append(proximo_valor)
 
-     for i in range (0,alto,tam_bloque):
-         for j in range (0,ancho,tam_bloque):
+    for i in range (0,alto,tam_bloque):
+        for j in range (0,ancho,tam_bloque):
             bloque = array_imagen [i:i+tam_bloque, j:j+tam_bloque]
-            promedio = np.mean(bloque,axis=(0,1)).astype(np.unit8)
-            mas_cercano= [min(valores_posibles, key=lambda x: abs(x-canal)) for canal in promedio)]
+            promedio = np.mean(bloque,axis=(0,1)).astype(np.uint8)
+            mas_cercano= [min(valores_posibles, key=lambda x: abs(x-canal)) for canal in promedio]
             bloque [:]= mas_cercano
     imagen_modificada= Image.fromarray(array_imagen)
     return imagen_modificada
@@ -32,7 +32,7 @@ def pixel(imagen):
     if entrada == '' or entrada == ' ':
         tamaño = 10
     else:
-        while not entrada isdigit():
+        while not entrada.isdigit():
             entrada= input ('Reingrese el tamaño:')
                             
         tamaño = int(entrada)
@@ -40,16 +40,16 @@ def pixel(imagen):
             entrada = input('Bloque invalido, reingrese: ')
             tamaño = int(entrada)
     
-    niveles= (input("ingrese niveles"))
-    if niveles == '' or nivel == " ":
+    n= (input("ingrese niveles"))
+    if n == '' or n == " ":
         niveles = 4
     else:
-        while not niveles isdigit():
-            niveles= input ('Reingrese el tamaño: ")
-        niveles = int(niveles)
-        while niveles <= 0:
-            niveles= input('Nivel invalido (0 o negativo),reingrese cantidad de niveles: ')
-            niveles = int(niveles)
+        while not n.isdigit():
+            n= input ('Reingrese el tamaño: ')
+        niveles = int(n)
+        while n <= 0:
+            n= input('Nivel invalido (0 o negativo),reingrese cantidad de niveles: ')
+            niveles = int(n)
 
     nueva_imagen= pixel_art(imagen,niveles,tamaño)
 
@@ -94,10 +94,10 @@ def guardar_ascii_art(ascii_art: str, ruta_salida: str):
 def ascii (imagen):
     entrada = input('Ingrese ancho de imagen (default=100): ')
 
-     if entrada == '' or entrada == ' ':
-        ancho = 100
+    if entrada == '' or entrada == ' ':
+                ancho = 100
     else:
-        while not entrada isdigit():
+        while not entrada.isdigit():
             entrada= input ('Reingrese el tamaño:')
                             
         ancho = int(entrada)
@@ -130,17 +130,23 @@ def main():
     entrada = input ('Seleccione metodo (pixel/ascii):')
     imagen= Image.open(ruta)
     flag= True
-    while flag
+    while flag:
         if entrada.lower() == "pixel":
-            pixel= pixel(imagen)
+            pixel(imagen)
         elif entrada.lower() == "ascii":
-            ascii= ascii(imagen)
+            ascii(imagen)
         else:
-            flag= not flag 
-        main()
+            entrada = input ('Metodo invalido, ingrese pixel o ASCII')
+
+    main()
         
         
         
+        
+    
+
+
+
         
     
 
