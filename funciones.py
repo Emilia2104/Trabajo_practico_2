@@ -5,69 +5,53 @@ import matplotlib.pyplot as plt
 from PIL import Image  
 
 #PIXEL:
-def pixel_divison_en_bloques (imagen, niveles, tam_bloque):
+def pixel_art (imagen, niveles, tam_bloque):
     array_imagen = np.array (imagen)
     alto= array_imagen.shape[0]
     ancho= array_imagen.shape[1]
 
-    alto_bloque = alto // tam_bloque
-    ancho_bloque = ancho // tam_bloque
-
-    total_bloques = alto_bloque * ancho_bloque
-
-    bloques = []
-    for i in range (0,alto,tam_bloque):
-        for j in range (0,ancho,tam_bloque):
-            bloque = array_imagen [i:i+tam_bloque, j:j+tam_bloque]
-            bloques.append (bloque)
-    return bloques
-
-def valores_posibles (niveles):
     valores_posibles = [0]
     for i in range(niveles-1):
-        x = i * 255 // (niveles - 1)
+        x = 255 // (niveles - 1)
         proximo_valor= valores_posibles[-1] + x 
         valores_posibles.append(proximo_valor)
-    return valores_posibles
 
-def bloque_promedio (bloque, niveles, tam_bloque):
-    promedio = np.mean(bloque, axis=(0,1)).astype(np.uint8)
-    return promedio
-
-def color_mas_cercano (array_imagen,promedio, valores_posibles,bloques,alto,ancho,tam_bloque):
-    for i in range (0,alto,tam_bloque):
-        for j in range (0,ancho,tam_bloque):
+     for i in range (0,alto,tam_bloque):
+         for j in range (0,ancho,tam_bloque):
             bloque = array_imagen [i:i+tam_bloque, j:j+tam_bloque]
-            mas_cercano= [min(valores_posibles, key=lambda x: abs(x-canal) for canal in promedio)]
-
+            promedio = np.mean(bloque,axis=(0,1)).astype(np.unit8)
+            mas_cercano= [min(valores_posibles, key=lambda x: abs(x-canal)) for canal in promedio)]
             bloque [:]= mas_cercano
     imagen_modificada= Image.fromarray(array_imagen)
-    return imagen_modificada 
+    return imagen_modificada
+
+#pregunta pixel_art 
+def pixel(imagen):
     
-                  
+    entrada = input('Ingrese tamaño del bloque (default=10): ')
+    if entrada == '' or entrada == ' ':
+        tamaño = 10
+    else:
+        tamaño = int(entrada)
+        while tamaño <= 0:
+            entrada = input('Bloque invalido, reingrese: ')
+            tamaño = int(entrada)
     
-   
+    niveles= (input("ingrese niveles"))
+    if niveles == '':
+        niveles = 4
+    else:
+        niveles = int(niveles)
+        while niveles <= 0:
+            niveles= input('Nivel invalido (0 o negativo),reingrese cantidad de niveles')
+            niveles = int(niveles)
 
 
-        
+    nueva_imagen= pixel_art(imagen,niveles,tamaño)
 
-
+    return nueva_imagen
 
     
-
-
-
-
-
-    #tenemos que hacer una variable con los valores posibles por nivel, que empieza en 0 y dividimos 255 (que es el maximo del canal) por la cantidad de niveles - 1 y lo sumamos al ultimo numero LISTO!!!!
-
-    # Recorremos la imagen bloque por bloque saltando de a tamaño de bloque que nos da el input 
-    # En cada iteración, i y j son la esquina superior izquierda del bloque actual
-    # Hacemos una variable bloque , calculamos su color promedio y lo reemplazamos por el color más cercano de la paleta
-
-
-
-
 #ASCII:
 def trabajo_ascii(imagen, ancho):
     paleta = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
@@ -110,6 +94,8 @@ def ascii (imagen,ruta_salida):
     guardar_ascii_art(resultado,ruta_salida)
 
 
+
+#FUNCION SOLICUT DE RUTA Y MAIN
 def solicitud()-> str:
     """
     Solicita al usuario la ruta donde esta la imagen, si no es valida solicita su reingreso
@@ -126,6 +112,7 @@ def solicitud()-> str:
 def main(): 
     ruta = solicitud()
     entrada = input ('Seleccione metodo (pixel/ascii):')
+    
     
 
 
