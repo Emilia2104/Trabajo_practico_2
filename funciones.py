@@ -32,20 +32,24 @@ def pixel(imagen):
     if entrada == '' or entrada == ' ':
         tamaño = 10
     else:
+        while not entrada isdigit():
+            entrada= input ('Reingrese el tamaño:')
+                            
         tamaño = int(entrada)
         while tamaño <= 0:
             entrada = input('Bloque invalido, reingrese: ')
             tamaño = int(entrada)
     
     niveles= (input("ingrese niveles"))
-    if niveles == '':
+    if niveles == '' or nivel == " ":
         niveles = 4
     else:
+        while not niveles isdigit():
+            niveles= input ('Reingrese el tamaño: ")
         niveles = int(niveles)
         while niveles <= 0:
-            niveles= input('Nivel invalido (0 o negativo),reingrese cantidad de niveles')
+            niveles= input('Nivel invalido (0 o negativo),reingrese cantidad de niveles: ')
             niveles = int(niveles)
-
 
     nueva_imagen= pixel_art(imagen,niveles,tamaño)
 
@@ -112,7 +116,7 @@ def solicitud()-> str:
 def main(): 
     ruta = solicitud()
     entrada = input ('Seleccione metodo (pixel/ascii):')
-    
+        
     
 
 
