@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from PIL import Image  
 
 #PIXEL ART:
-def pixel_art (imagen, niveles: int, tam_bloque: int)-> :
+def pixel_art (imagen: Image.Image, niveles: int, tam_bloque: int)-> Image.Image:
     
     """
     Convierte la imagen a un array Numpy. Recorre en bloques cuadrados y 
@@ -45,7 +45,7 @@ def pixel_art (imagen, niveles: int, tam_bloque: int)-> :
 
 #PREGUNTA PARA USO DE PIXEL ART
  
-def pixel(imagen: )-> :
+def pixel(imagen:Image.Image )-> Image.Image :
     
     """
     Se pregunta al usuario por tamaño de bloque y cantidad de niveles,
@@ -53,7 +53,7 @@ def pixel(imagen: )-> :
     valores ingresados sean positivos.
    
     ARGUMENTO
-    imagen:
+    imagen: Imagen de entrada a convertir en pixel art
 
     RETURN
     La funcion retorna la imagen con el efecto pixel art, segun parametros
@@ -89,19 +89,19 @@ def pixel(imagen: )-> :
 
     
 #ASCII:
-def trabajo_ascii(imagen: , ancho: int)->:
+def trabajo_ascii(imagen: Image.Image , ancho: int)-> str:
 
     """
-    Convierte la imagen a un array Numpy con escala de grises, se normalizan dentro de los 
-    valores preestablecidos para escala de grises, se redimensiona y mapea la imagen 
+    Convierte la imagen a un array Numpy con escala de grises, se normalizan al rango 
+    0-255 en base al minimo y maximo de la imagen, se redimensiona y mapea la imagen 
     asignandole el caracter correspondiente segun el valor de intensidad. 
 
     ARGUMENTOS
-    imagen:
+    imagen: Imagen de entrada a convertir en ascii art 
     ancho: tamano que ingresa el usuario para redimensiona la imagen
 
     RETURN
-    La funcion retorna la imagen con el efecto ASCII ya aplicado
+    La funcion retorna un string con el efecto ASCII de la imagen ya aplicado
     """
     paleta = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,\"^`'. "
     
@@ -131,16 +131,28 @@ def trabajo_ascii(imagen: , ancho: int)->:
     
     return resultado
 
-def guardar_ascii_art(ascii_art: str, ruta_salida: str):
+def guardar_ascii_art(ascii_art: str, ruta_salida: str) -> None:
 
     """
+    Guarda un el str de ASCII art en un archivo texto
+
+    ARGUMENTOS:
+    ascii_art: string con contenido del ascii art a guardar
+    ruta_salida: string con la ruta donde se quiere guardar el contenido de ascii_art
     
     """
     with open(ruta_salida, 'w') as f:
         f.write(ascii_art)
 
 
-def ascii (imagen):
+def ascii (imagen:Image.Image)-> None:
+    """
+    Solicita al usuario el ancho deseado y ruta de salida, corrobora que los inputs sean validos, en caso de que lo sean
+    genera ascii art y lo guarda en un archivo
+
+    ARGUMENTO:
+    imagen: imagen a convertir en ascii
+    """
     entrada = input('Ingrese ancho de imagen (default=100): ')
 
     if entrada == '' or entrada == ' ':
@@ -186,8 +198,7 @@ def main():
             resultado.show()
         elif entrada.lower() == "ascii":
             flag = True
-            resultado = ascii(imagen)
-            resultado.show()
+            ascii(imagen)
         else:
             entrada = input ('Metodo invalido, ingrese pixel o ASCII')
 
