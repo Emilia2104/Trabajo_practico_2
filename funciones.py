@@ -166,7 +166,7 @@ def ascii (imagen:Image.Image)-> None:
             entrada = input('Ancho de la imagen ASCII debe ser un numero positivo, reingrese: ')
             ancho = int(entrada)
             
-    ruta_salida= input ("Seleccione la ruta para guardar el resultado: ")
+    ruta_salida= input ("Ingrese nombre de la ruta para guardar el resultado: ") + "txt"
     resultado= trabajo_ascii (imagen,ancho)
     guardar_ascii_art(resultado,ruta_salida)
 
