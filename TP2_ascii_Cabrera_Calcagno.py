@@ -85,36 +85,4 @@ def ascii (imagen:Image.Image)-> None:
 
 
 
-#FUNCION SOLICUT DE RUTA Y MAIN
-def solicitud()-> str:
-    """
-    Solicita al usuario la ruta donde esta la imagen, si no es valida solicita su reingreso
-
-    Returns:
-        str: Retorna ruta valida de la imagen
-    """
-    ruta= input('Ingrese ruta donde esta la imagen a procesar:')
-    while not os.path.exists(ruta):
-        ruta= input('No se encontro la imagen. Por favor, verifique la ruta e intente nuevamente: ')
-    return ruta
-
-
-def main(): 
-    ruta = solicitud()
-    entrada = input ('Seleccione metodo (pixel/ascii):')
-    imagen= Image.open(ruta)
-    flag= False
-    while not flag:
-        if entrada.lower() == "pixel":
-            flag = True
-            resultado = pixel(imagen)
-            resultado.show()
-        elif entrada.lower() == "ascii":
-            flag = True
-            ascii(imagen)
-        else:
-            entrada = input ('Metodo invalido, ingrese pixel o ASCII')
-
-main ()
-
 
