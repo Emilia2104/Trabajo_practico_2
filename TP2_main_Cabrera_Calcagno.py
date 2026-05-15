@@ -1,3 +1,7 @@
+from TP2_ascii_Cabrera_Calcagno import *
+from TP2_funciones_Cabrera_Calcagno import *
+from TP2_pixel_Cabrera_Calcagno import *
+
 def main(): 
     ruta = solicitud()
     entrada = input ('Seleccione metodo (pixel/ascii):')
