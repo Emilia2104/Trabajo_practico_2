@@ -64,25 +64,18 @@ def pixel(imagen:Image.Image )-> Image.Image :
     if entrada == '' or entrada == ' ':
         tamaño = 10
     else:
-        while not entrada.isdigit():
-            entrada= input ('Reingrese el tamaño:')
-                            
+        while not entrada.isdigit() or tamaño <= 0:
+            entrada= input ('Reingrese el tamaño:')                         
         tamaño = int(entrada)
-        while tamaño <= 0:
-            entrada = input('Bloque invalido, reingrese: ')
-            tamaño = int(entrada)
+
     
     n= (input("ingrese niveles"))
     if n == '' or n == " ":
         niveles = 4
     else:
-        while not n.isdigit():
+        while not n.isdigit() or niveles <= 0:
             n= input ('Reingrese el tamaño: ')
         niveles = int(n)
-        while niveles <= 0:
-            n= input('Nivel invalido (0 o negativo),reingrese cantidad de niveles: ')
-            niveles = int(n)
-
     nueva_imagen= pixel_art(imagen,niveles,tamaño)
 
     return nueva_imagen
@@ -158,14 +151,11 @@ def ascii (imagen:Image.Image)-> None:
     if entrada == '' or entrada == ' ':
                 ancho = 100
     else:
-        while not entrada.isdigit():
+        while not entrada.isdigit() or ancho <= 0:
             entrada= input ('Reingrese el tamaño:')
                             
         ancho = int(entrada)
-        while ancho <= 0:
-            entrada = input('Ancho de la imagen ASCII debe ser un numero positivo, reingrese: ')
-            ancho = int(entrada)
-            
+
     ruta_salida= input ("Ingrese nombre de la ruta para guardar el resultado: ") + "txt"
     resultado= trabajo_ascii (imagen,ancho)
     guardar_ascii_art(resultado,ruta_salida)
