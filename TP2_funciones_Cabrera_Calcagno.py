@@ -1,3 +1,4 @@
+import os
 def solicitud()-> str:
     """
     Solicita al usuario la ruta donde esta la imagen, si no es valida solicita su reingreso
